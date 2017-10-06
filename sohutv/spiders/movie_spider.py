@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+
 import scrapy
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
+from .. import items
 
 class MovieSpider(scrapy.Spider):
     name = "movie"
@@ -11,6 +14,16 @@ class MovieSpider(scrapy.Spider):
 
     def parse(self, response):
         self.log ('>> parse')
-        movie_list = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//strong//a//text()").extract()
-        print (movie_list)
-        return []
+
+        # yield item
+        movie_names = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//strong//a//text()").extract()
+        movie_urls = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//strong/a/@href").extract()
+        movie_num = len(movie_names)
+        for i in range(0, movie_num):
+            yield items.SohutvItem(name=movie_names[i], url=movie_urls[i])
+
+        # yield next page
+        nav_list = response.selector.xpath("//div[contains(@class, 'ssPages')]//a")
+        nav_last_txt = nav_list.xpath("@title").extract()[-1]
+        if nav_last_txt == u'\u4e0b\u4e00\u9875':
+            yield response.follow(nav_list.xpath('@href').extract()[-1], callback=self.parse)

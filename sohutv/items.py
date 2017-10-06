@@ -5,10 +5,20 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+#import scrapy
+from scrapy.item import Item, Field
 
 
-class SohutvItem(scrapy.Item):
+
+class SohutvItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    name = Field()
+    img_url = Field()
+    page_url = Field()
+
+    # Housekeeping fields
+    url = Field()
+    project = Field()
+    spider = Field()
+    server = Field()
+    date = Field()
