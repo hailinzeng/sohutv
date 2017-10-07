@@ -21,5 +21,6 @@ class SohutvPipeline(object):
 
     def process_item(self, item, spider):
         # write to MongoDB
-        self.collection.insert(dict(item))
+        self.collection.update({'page_url': item['page_url']}, dict(item), upsert=True)
+        # self.collection.insert(dict(item))
         return item
