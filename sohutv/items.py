@@ -17,7 +17,7 @@ class SohutvItem(Item):
     page_url = Field()
 
     # Housekeeping fields
-    url = Field()
+    # url = Field()
     project = Field()
     spider = Field()
     server = Field()

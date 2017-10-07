@@ -18,9 +18,10 @@ class MovieSpider(scrapy.Spider):
         # yield item
         movie_names = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//strong//a//text()").extract()
         movie_urls = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//strong/a/@href").extract()
+        movie_imgs = response.selector.xpath("//ul[contains(@class, 'st-list')]//li//img/@src").extract()
         movie_num = len(movie_names)
         for i in range(0, movie_num):
-            yield items.SohutvItem(name=movie_names[i], url=movie_urls[i])
+            yield items.SohutvItem(name=movie_names[i], page_url=movie_urls[i], img_url=movie_imgs[i])
 
         # yield next page
         nav_list = response.selector.xpath("//div[contains(@class, 'ssPages')]//a")

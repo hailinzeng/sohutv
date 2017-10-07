@@ -1,4 +1,5 @@
 # sohutv
+
 learn scrapy
 
 - create scrapy project : `scrapy startproject sohutv .`
@@ -6,4 +7,4 @@ learn scrapy
 - fix forbidden by robots.txt: settings.py, `set ROBOTSTXT_OBEY=False`
 - chrome console: `$x("//ul[contains(@class, 'st-list')]//li")`
 - quick xpath by chrome 'Inspect Element'
-
+- tutorial: [Web Scraping and Crawling With Scrapy and MongoDB](https://realpython.com/blog/python/web-scraping-and-crawling-with-scrapy-and-mongodb/)
