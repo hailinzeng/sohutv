@@ -8,3 +8,11 @@ learn scrapy
 - chrome console: `$x("//ul[contains(@class, 'st-list')]//li")`
 - quick xpath by chrome 'Inspect Element'
 - tutorial: [Web Scraping and Crawling With Scrapy and MongoDB](https://realpython.com/blog/python/web-scraping-and-crawling-with-scrapy-and-mongodb/)
+
+usage:
+
+- install mongodb; create database `sohutv` and add collection `movies`
+- install virtualenv: `pip install virtualenv`
+- create virtualenv: `virtualenv env; source env/bin/activate`
+- install dependency: `pip install -r requirements.txt`
+- run scrapy: `scrapy crawl movie`
